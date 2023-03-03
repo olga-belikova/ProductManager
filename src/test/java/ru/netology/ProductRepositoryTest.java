@@ -26,4 +26,18 @@ public class ProductRepositoryTest {
 
         Assertions.assertArrayEquals(expected, actual);
     }
+
+    //Тест на исключение:
+    @Test
+    public void shouldCatchNotFoundException() {
+        ProductRepository repo = new ProductRepository();
+        repo.save(book1);
+        repo.save(book2);
+        repo.save(book3);
+        repo.save(smartphone1);
+        repo.save(smartphone2);
+
+        Assertions.assertThrows(NotFoundException.class,
+                () -> repo.removeById(6));
+    }
 }
